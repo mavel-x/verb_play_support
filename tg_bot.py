@@ -6,7 +6,7 @@ from environs import Env
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 
-from dialog_handler import get_reply_to_text
+from dialog_handler import detect_intent_for_text
 
 
 logger = logging.getLogger(__name__)
@@ -25,11 +25,12 @@ def echo(update: Update, context: CallbackContext) -> None:
 
 
 def detect_message_intent(update: Update, context: CallbackContext) -> None:
-    return get_reply_to_text(
+    detection_result = detect_intent_for_text(
         project_id=context.bot_data['gc_project_id'],
         session_id=update.effective_user.id,
         text=update.message.text,
     )
+    update.message.reply_text(detection_result.fulfillment_text)
 
 
 def main() -> None:

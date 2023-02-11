@@ -1,20 +1,14 @@
 import json
-import logging
 
 import vk_api
 from environs import Env
 from vk_api.longpoll import VkLongPoll, VkEventType
 from vk_api.utils import get_random_id
 
-from dialog_handler import get_reply_to_text
-
-logger = logging.getLogger(__name__)
+from dialog_handler import detect_intent_for_text
 
 
 def main():
-    logging.basicConfig(
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
-    )
     env = Env()
     env.read_env()
 
@@ -28,20 +22,14 @@ def main():
     longpoll = VkLongPoll(vk_session)
 
     for event in longpoll.listen():
-        if event.type == VkEventType.MESSAGE_NEW:
-            print('Новое сообщение:')
-            if event.to_me:
-                print('Для меня от: ', event.user_id)
-            else:
-                print('От меня для: ', event.user_id)
-            print('Текст:', event.text)
-
-            reply = get_reply_to_text(gc_project_id, event.user_id, event.text)
-
+        if event.type == VkEventType.MESSAGE_NEW and event.to_me:
+            detection_result = detect_intent_for_text(gc_project_id, event.user_id, event.text)
+            if detection_result.intent.is_fallback:
+                continue
             vk.messages.send(
                 user_id=event.user_id,
                 random_id=get_random_id(),
-                message=reply,
+                message=detection_result.fulfillment_text,
             )
 
 

@@ -2,6 +2,7 @@ import json
 import logging
 from pathlib import Path
 
+import google
 from environs import Env
 from google.cloud import dialogflow
 
@@ -70,8 +71,10 @@ def main():
         intents = json.load(file)
 
     for intent_name, intent_settings in intents.items():
-        create_intent(gc_project_id, intent_name, intent_settings['questions'], intent_settings['answer'])
-        break
+        try:
+            create_intent(gc_project_id, intent_name, intent_settings['questions'], intent_settings['answer'])
+        except google.api_core.exceptions.InvalidArgument:
+            continue
 
 
 if __name__ == '__main__':
