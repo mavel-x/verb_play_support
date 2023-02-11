@@ -127,5 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-/credentials.json
+/google_credentials.json
 /data/
