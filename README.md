@@ -8,4 +8,5 @@ Powered by Google Dialogflow
 1. Создать Service Account для проекта
 2. Создать API ключ к нему и добавить путь к JSON-файлу с данными авторизации
 в переменную GOOGLE_APPLICATION_CREDENTIALS в файле `.env`
-3. Добавить в разделе IAM в консоли Google Cloud необходимое разрешение для этого сервисного аккаунта: Dialogflow API Client
+3. Добавить в разделе IAM в консоли Google Cloud необходимые разрешения для этого сервисного аккаунта: 
+Dialogflow API Client, Dialogflow Intent Admin
