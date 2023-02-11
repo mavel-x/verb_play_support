@@ -38,7 +38,7 @@ def main():
         gc_credentials = json.load(file)
         gc_project_id = gc_credentials['project_id']
 
-    with open('data/intents.json', 'r') as file:
+    with open(env.path('INTENTS_PATH'), 'r') as file:
         intents = json.load(file)
 
     for intent_name, intent_settings in intents.items():
