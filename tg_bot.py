@@ -76,7 +76,7 @@ def main() -> None:
         gc_credentials = json.load(file)
         gc_project_id = gc_credentials['project_id']
 
-    run_tg_bot(tg_token, gc_project_id + 'FIXME', admin_chat_id)
+    run_tg_bot(tg_token, gc_project_id, admin_chat_id)
 
 
 if __name__ == '__main__':
