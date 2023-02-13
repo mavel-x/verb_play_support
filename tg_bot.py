@@ -33,10 +33,6 @@ def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text('Здравствуйте.')
 
 
-def echo(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(update.message.text)
-
-
 def detect_message_intent(update: Update, context: CallbackContext) -> None:
     detection_result = detect_intent_for_text(
         project_id=context.bot_data['gc_project_id'],
