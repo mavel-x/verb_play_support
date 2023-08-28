@@ -65,6 +65,3 @@ Dialogflow API Client, Dialogflow Intent Admin
 ВК-бот и телеграм-бот работают из файлов `vk_bot.py` и `tg_bot.py`.
 Для параллельного запуска на сервере вам поможет, например, утилита 
 [screens](https://github.com/python-telegram-bot/python-telegram-bot/wiki/Hosting-your-bot#start-your-bot).
-
-## О проекте
-Это учебный проект для школы Python-разработчиков [dvmn.org](https://dvmn.org).
